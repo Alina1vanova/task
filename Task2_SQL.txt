@@ -1,0 +1,63 @@
+CREATE DATABASE db;
+
+USE db;
+
+CREATE TABLE Customers
+(
+_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+LastName TEXT(25),
+FirstName TEXT(25),
+Address TEXT(25),
+City TEXT(25)
+);
+
+CREATE TABLE Orders
+(
+_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+OrderDate TEXT(23),
+WasDelivered INTEGER,
+CustomerID INTEGER
+);
+
+CREATE TABLE Goods
+(
+_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+ItemDescription TEXT(255),
+IsAvailable INTEGER,
+OrderID INTEGER
+);
+
+INSERT INTO Customers (LastName, FirstName, Address, City)
+VALUES ('Petrenko','Igor','5 First Street','Kiev');
+
+INSERT INTO Customers (LastName, FirstName, Address, City)
+VALUES ('Barsky','Oleg','95 Second Street','Odessa');
+
+INSERT INTO Customers (LastName, FirstName, Address, City)
+VALUES ('Kharchenko','Egor','39 Third Street','Kiev');
+
+INSERT INTO Orders (OrderDate, WasDelivered, CustomerID)
+VALUES ('2014-04-22 15:06:45.000','0','2');
+
+INSERT INTO Orders (OrderDate, WasDelivered, CustomerID)
+VALUES ('2014-04-23 12:06:45.000','0','1');
+
+INSERT INTO Goods (ItemDescription, IsAvailable, OrderID)
+VALUES ('LG Google Nexus 5 16GB Black','1','1');
+
+INSERT INTO Goods (ItemDescription, IsAvailable, OrderID)
+VALUES ('Sony Xperia V LT25i Black','0','1');
+
+INSERT INTO Goods (ItemDescription, IsAvailable, OrderID)
+VALUES ('LG Google Nexus 5 16GB White','1','2');
+
+SELECT FirstName,LastName FROM Customers;
+
+SELECT ItemDescription FROM Goods WHERE IsAvailable = '0' ;
+
+SELECT * FROM Customers INNER JOIN Orders ON Customers._Id = Orders.CustomerID
+
+SELECT * FROM Customers INNER JOIN Orders ON Customers._Id = Orders.CustomerID INNER JOIN Goods ON Orders._Id = Goods.OrderID
+
+SELECT COUNT(*) FROM Customers;
+
